@@ -1,0 +1,9 @@
+# Agar aplikasi bisa dibuka lewat http://localhost/briefly (XAMPP) tanpa "/public".
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^build/(.*)$ public/build/$1 [L]
+    RewriteRule ^(favicon\.ico|robots\.txt)$ public/$1 [L]
+    RewriteRule ^index\.php$ - [L]
+    # Semua request lain lewat Laravel (file proyek seperti .env tidak pernah dilayani langsung).
+    RewriteRule ^ index.php [L]
+</IfModule>
